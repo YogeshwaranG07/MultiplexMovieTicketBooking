@@ -1,0 +1,64 @@
+<div class='container mt-5'>
+    <div class='row'>
+      <div class='col-sm-8'>
+        <h5 class='p-2 text-white'>Halls List</h5>
+        <table class='table table-bordered'>
+          <thead>
+            <tr>
+            <th>Id</th>
+            <th>Hall Name</th>
+            <th>Capacity</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for(x of halls; track $index) {
+                <tr>
+                    <td>{{x.hallId}}</td>
+                    <td>{{x.hallDesc}}</td>
+                    <td>{{x.capacity}}</td>
+                    <td>
+                    <button class='btn btn-danger btn-sm' (click)="deleteHall(x.hallId)">Delete</button>
+                    <button class='btn btn-primary btn-sm ms-2' (click)="editHall(x)">Edit</button>
+                    </td>
+                </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class='col-sm-4'>
+          <div class='card mt-5'>
+            <div class='card-header text-center'>
+              <h5>Add Hall</h5>
+            </div>
+            <div class='card-body'>
+              <form [formGroup]="hallForm" (submit)="saveHall()">
+                <div class='mb-2'>
+                  <label>Description</label>
+                  <input
+                    type='text'
+                    class='form-control form-control-sm'
+                    formControlName="hallDesc"
+                  />
+                </div>
+                <div class='mb-2'>
+                  <label>Capacity</label>
+                  <input
+                    type='number'
+                    min='1'                  
+                    formControlName="capacity"      
+                    class='form-control form-control-sm'
+                  />
+                </div>
+                <button
+                  class='btn btn-primary btn-sm float-end'
+                >
+                  Save Details
+                </button>
+              </form>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>

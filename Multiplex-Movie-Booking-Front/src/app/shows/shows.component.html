@@ -1,0 +1,122 @@
+    <div class="container-fluid">
+    <div class='row mt-5'>
+      <div class='col-sm-8'>
+        <h5 class='p-2 mt-5 text-white'>Shows List</h5>
+        <table class='table table-bordered'>
+          <thead>
+            <tr>
+            <th>Movie Name</th>
+            <th>Hall Details</th>
+            <th>Show Details</th>
+            <th>Ticket</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+          </thead>
+          <tbody>
+            @for (x of shows; track $index) {
+              <tr>
+                <td>{{x.movie.movieName}}</td>
+                <td>{{x.hall.hallDesc}}</td>
+                <td>{{findslot(x.slot)}}</td>
+                <td>{{x.price}}</td>
+                <td>
+                  {{x.fromDate | date:'dd-MM-YYYY'}} - {{x.toDate | date:'dd-MM-YYYY'}}
+                </td>
+                <td>
+                  <button
+                    (click)="handleDelete(x.showId)"
+                    class='btn btn-danger btn-sm'
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class='col-sm-4'>
+        <div class="card mt-5">
+            <div class="card-body">
+            
+        <h5>Add Show</h5>
+        <form [formGroup]="showForm" (submit)="saveShow()">
+          <div class='mb-2'>
+            <label>Movie</label>
+            <select
+              class='form-control form-control-sm'
+              formControlName="movieId"
+            >
+              <option value=''>Select Movie</option>
+              @for (x of movies; track $index) {
+                <option value={{x.movieId}}>{{x.movieName}}</option>
+                } 
+            </select>
+          </div>
+          <div class='mb-2'>
+            <label>Hall</label>
+            <select
+              class='form-control form-control-sm'
+              formControlName="hallId"
+              
+            >
+              <option value=''>Select Hall</option>
+              @for(x of halls; track $index) {
+                <option value={{x.hallId}}>{{x.hallDesc}}</option>
+              }
+            </select>
+          </div>
+          <div class='mb-2'>
+            <label>Ticket Price</label>
+            <input type='number'
+              formControlName="price"
+              placeholder='Ticket Price'
+              
+              class='form-control form-control-sm'
+            />                  
+          </div>
+          <div class='mb-2'>
+            <label>From Date</label>
+            <select
+              formControlName="slot"
+              
+              class='form-control form-control-sm'
+            >
+              <option value=''>Select Time Slot</option>
+              <option value='1'>09:00AM to 12:00PM</option>
+              <option value='2'>12:00PM to 03:00PM</option>
+              <option value='3'>03:00AM to 06:00PM</option>
+              <option value='4'>06:00AM to 09:00PM</option>
+              <option value='5'>09:00AM to 12:00AM</option>
+            </select>
+          </div>
+          <div class='mb-2'>
+            <label>From Date</label>
+            <input
+              type='date'
+              min={{minDate}}
+              class='form-control form-control-sm'
+              formControlName="fromDate"
+            />
+          </div>
+          <div class='mb-2'>
+            <label>To Date</label>
+            <input
+              type='date'
+              min={{minDate}}
+              class='form-control form-control-sm'
+                formControlName="toDate"
+            />
+          </div>
+          <button
+            class='btn btn-primary btn-sm float-end'
+          >
+            Save Details
+          </button>
+        </form>
+    </div>
+</div>
+      </div>
+    </div>
+</div>

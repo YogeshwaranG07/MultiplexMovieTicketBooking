@@ -1,0 +1,30 @@
+<div class="mt-5">
+    <div class="d-block w-100" style="height:500px;background-image:url('assets/header.jpg');background-size:100% 100%;">
+         <form class="d-block mx-auto" [formGroup]="searchForm" (submit)="searchShow()" style="width:80%;position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);">
+           <div class="row">
+              <div class="col-sm-3">
+              <select class="form-control me-2" formControlName="slot">
+                <option value="">Select Time Slot</option>
+                <option value="1">09:00AM to 12:00PM</option>
+                <option value="2">12:00PM to 03:00PM</option>
+                <option value="3">03:00AM to 06:00PM</option>
+                <option value="4">06:00AM to 09:00PM</option>
+                <option value="5">09:00AM to 12:00AM</option>
+              </select>
+              </div>
+              <div class="col-sm-3">
+              <input type="search" formControlName="movieName" placeholder="Movie name here" class="form-control me-2" />
+              </div>
+              <div class="col-sm-3">
+              <input type="date" formControlName="date" class="form-control me-2" />
+              </div>                
+              <div class="col-sm-1">
+              <button class="btn btn-warning bg-gradient text-white" type="submit"><i class="fa fa-search"></i></button>
+              </div>
+              </div>
+          </form>
+       </div>
+  </div>
+  <app-search-result [shows]="shows"></app-search-result>
+
+  <app-about></app-about>

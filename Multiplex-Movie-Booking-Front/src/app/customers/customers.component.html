@@ -1,0 +1,23 @@
+<div class='container mt-5'>
+    <h5 class='p-2 text-white'>Users List</h5>
+    <table class='table table-bordered'>
+      <thead>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email Id</th>
+    </tr>
+      </thead>
+      <tbody>
+        @for (x of users; track $index) {
+            <tr>
+              <td>{{x.userid}}</td>
+              <td>{{x.userName}}</td>
+              <td>{{x.mobile}}</td>
+              <td>{{x.email}}</td>
+            </tr>
+        }
+      </tbody>
+    </table>
+  </div>

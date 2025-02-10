@@ -1,0 +1,125 @@
+<div class='container mt-5'>
+    <div class='row'>
+      <div class='col-sm-8'>
+        <h5 class='p-2 text-white'>Movies List</h5>
+        <table class='table table-bordered'>
+          <thead>
+            <tr>
+            <th>Movie Name</th>
+            <th>Action</th>
+        </tr>
+          </thead>
+          <tbody>
+            @for (x of movies; track $index) {
+              <tr>
+                <td>
+                  <img
+                  class='float-start'
+                    src="http://localhost:8080/{{x.poster}}"
+                    style="
+                      width: 100px;
+                      height: 120px;
+                      margin-right: 10px
+                    "
+                  />
+                  {{x.movieName}}<br/>
+                  Actors: {{x.actor}}<br/>
+                  Actress: {{x.actress}}<br/>
+                  Year: {{x.year}}
+                </td>
+                <td>
+                  <button
+                    class='btn btn-danger btn-sm'
+                    (click)="deleteMovie(x.movieId)"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    (click)='editMovie(x)'
+                    class='btn btn-primary btn-sm ms-2'
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class='col-sm-4'>
+        <h5 class="p-2 mt-5 text-white">Add Movie</h5>
+        <div class="card">
+            <div class="card-body">
+                
+        <form [formGroup]="movieForm" (submit)="saveMovie()">
+          <div class='mb-2'>
+            <label>Movie Name</label>
+            <input
+              type='text'
+              formControlName="movieName"
+              class='form-control form-control-sm'
+            />
+          </div>
+          <div class='mb-2'>
+            <label>Actors Name</label>
+            <input
+              type='text'
+              formControlName="actor"
+              class='form-control form-control-sm'
+            />
+          </div>
+          <div class='mb-2'>
+            <label>Actresses Name</label>
+            <input
+              type='text'
+              formControlName="actress"
+              class='form-control form-control-sm'
+            />
+          </div>
+          <div class='mb-2'>
+            <label>Director Name</label>
+            <input
+              type='text'
+              formControlName="director"
+              class='form-control form-control-sm'
+            />
+          </div>
+          <div class='mb-2'>
+            <label>Release year</label>
+            <input
+              type='number'
+              formControlName="year"
+              class='form-control form-control-sm'
+            />
+          </div>
+          <div class='mb-2'>
+            <label>Description</label>
+            <textarea
+              rows={3}
+              formControlName="description"
+              class='form-control form-control-sm'
+            ></textarea>
+          </div>
+          <div class='mb-2'>
+            <label>Movie Poster</label>
+            <input
+              type='file'
+              formControlName="photo"
+            (change)="saveFile($event)"
+            accept=".jpg,.png"
+              class='form-control-file form-control'
+            />
+          </div>
+          <button
+            
+            class='btn btn-primary btn-sm float-end'
+          >
+            Save Details
+          </button>
+        </form>
+    
+    </div>
+</div> 
+    </div>
+    </div>
+  </div>

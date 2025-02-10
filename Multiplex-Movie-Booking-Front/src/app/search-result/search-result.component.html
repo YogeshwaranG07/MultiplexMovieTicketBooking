@@ -1,0 +1,57 @@
+<div class='mx-auto my-2 bg-white' style="width: 95%">
+    <h5 class='p-2 text-center'>Movies List</h5>
+    @if(shows && shows.length > 0) {
+      <table class='table table-bordered table-responsive table-dark'>
+        <thead>
+          <tr>
+            <th>Movie Name</th>
+            <th>Slot</th>
+            <th>Hall Details</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for(x of shows; track $index) {
+            <tr>
+              <td>
+                <img
+                  style="width: 80px;
+                    height: 100px;
+                    margin-right: 10px"
+                  alt="poster"
+                  src="http://localhost:8080/{{x?.movie.poster}}"
+                />
+                {{x.movie.movieName}}
+              </td>
+              <td>{{findslot(x.slot)}}</td>
+              <td>{{x.hall.hallDesc}}</td>
+              <td>
+                {{x.fromDate | date:'dd-MM-YYYY'}} - {{x.toDate | date:'dd-MM-YYYY'}}
+              </td>
+              <td>
+                @if(auth.isLoggedIn$ | async) {
+                  <a
+                    routerLink='book/{{x.showId}}'
+                    class='btn btn-danger btn-sm'
+                  >
+                    Book Now
+                  </a>
+                }
+                @else {
+                  <a
+                    routerLink='login'
+                    class='btn btn-danger btn-sm'
+                  >
+                    Login to Book
+                  </a>
+                }
+              </td>
+            </tr>
+        }
+        </tbody>
+      </table>
+    } @else {
+      <h5 class='text-center p-2'>No movies found</h5>
+    }
+</div>

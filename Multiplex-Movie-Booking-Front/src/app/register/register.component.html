@@ -1,0 +1,64 @@
+<div class='container' style="width: 70%;margin:auto; margin-top: 100px;">
+    <div class='title text-center'>User Registration Form</div>
+    <form  [formGroup]="registerForm" (submit)="register()">
+      <div class='user-details'>
+        <div class='input-box'>
+          <span class='details'>First Name</span>
+          <input
+            type='text'
+            placeholder='Enter first name'
+            required
+            formControlName="fname"
+          />
+        </div>
+        <div class='input-box'>
+          <span class='details'>Last Name</span>
+          <input
+            type='text'
+            placeholder='Enter last name'
+            required
+            formControlName="lname"
+          />
+        </div>
+        <div class='input-box'>
+          <span class='details'>Mobile Number</span>
+          <input
+            type='text'
+            min="10"
+            max="10"
+            placeholder='Enter your number'
+            id='mobileNo'
+            formControlName="mobile"
+            required
+          />
+        </div>
+
+        <div class='input-box'>
+          <span class='details'>Email</span>
+          <input
+            type='email'
+            placeholder='Enter your email'
+            id='emailid'
+            formControlName="email"
+            required
+          />
+        </div>
+        <div class='input-box'>
+          <span class='details'>Password</span>
+          <input
+            type='password'
+            placeholder='Enter your password'
+            id='password'
+            formControlName="password"
+            required
+          />
+        </div>
+      </div>
+      <div class='button' style="margin: auto;">
+        <input
+          type='submit'
+          class='bg-info bg-gradient'
+        />
+      </div>
+    </form>
+  </div>

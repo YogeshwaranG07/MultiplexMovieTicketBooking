@@ -1,0 +1,80 @@
+<div class='container mt-5 text-white'>
+    <h4 class="text-white p-3">Booking Show</h4>
+    <div class='row'>
+      <div class='col-sm-3'>
+        <div class='card mt-5 text-dark'>
+          <img
+            [src]="imagePath"
+            alt="poster"
+            style="height: 400px;"
+            class='card-img-top'
+          />
+          </div>
+          </div>
+          <div class="col-sm-4 d-flex align-items-center">
+            <div class="card text-dark">
+            <div class="card-body">
+          <div class='card-body text-center'>
+            <h6>{{show.movie.movieName}} ({{show.movie.year}})</h6>
+            <h6>{{show.movie.description}}</h6>
+            <h6>Actor: {{show.movie.actor}}</h6>
+            <h6>Actress: {{show.movie.actress}}</h6>
+            <h6>Director: {{show.movie.director}}</h6><hr/>
+            <h6>Hall No : {{show.hall.hallDesc}}</h6>
+            <h6>Time Slot: {{findslot(show.slot)}}</h6>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class='col-sm-4 mt-5'>
+        <form [formGroup]="bookingForm" (submit)="booknow()">
+          <div class='mb-2'>
+            <label>Select Show Date</label>
+            <input
+              type='date'
+              formControlName="showDate"
+              class='form-control'
+              [min]="minDate"
+            />
+          </div>
+          <div class='mb-2'>
+            <label>Ticket Price</label>
+            <input type='text' value={{show.price}} class='form-control'/>
+          </div>
+          
+          <div class='mb-2'>
+            <label>No Of Seats</label>
+            <input
+              type='number'
+              min={1}
+              max={{show.hall.capacity}}
+              formControlName="noOfSeats"
+              class='form-control'
+            />
+          </div>
+          <div class="mb-2">
+            <label>Seats Available</label>
+            <input type="number" disabled class="form-control" value={{show.hall.capacity}}>
+          </div>
+          <div class='mb-2'>
+            <label>Total Cost</label>
+            <input
+              type='text'
+              [disabled]="true"
+              [value]="bookingForm.get('noOfSeats')?.value * show.price"
+              formControlName="cost"
+              class='form-control'
+            />
+              
+          </div>
+          <button
+            
+            class='btn btn-primary float-end'
+          >
+            Book Now
+          </button>
+        </form>
+      </div>
+      
+    </div>
+  </div>

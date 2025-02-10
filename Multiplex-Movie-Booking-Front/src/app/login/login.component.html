@@ -1,0 +1,30 @@
+<div>
+    <div class='center'>
+      <h5 class='p-3 text-center bg-info rounded-top bg-gradient text-white'>
+        Login
+      </h5>
+      <form [formGroup]="loginForm" (submit)="submitForm()">
+        <div class='txt_field'>
+          <input
+            name='email'
+            type='text'
+            formControlName='userid'
+          />
+          <span></span>
+          <label>User Name</label>
+        </div>
+        <div class='txt_field'>
+          <input
+            name='password'
+            type='password'
+            formControlName='password'
+          />
+          <span></span>
+          <label>Password</label>
+        </div>
+        <input type='submit' value='Login' />
+        <br />
+        <br />
+      </form>
+    </div>
+  </div>
